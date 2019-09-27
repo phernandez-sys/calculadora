@@ -61,7 +61,7 @@ btnAdd.onclick = operatorfunction
 
 btnEqual.onclick = function(event){
   secondValue = parseFloat(display.innerText)
-  let result
+/*  let result
   switch (selectedOperator) {
     case '+':
       result = firstValue + secondValue
@@ -78,7 +78,22 @@ btnEqual.onclick = function(event){
     default:
       break;
   }
-  display.innerText = result
+  display.innerText = result*/
+
+  const options = {
+  baseURL: "http://localhost:3000/",
+  timeout: 5000,
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  }
+  }
+  fetch(`http://localhost:3000/getresult/${firstValue}/${secondValue}/${selectedOperator}`, options)
+.then(res => res.json())
+.then((response) => {
+  console.log(response)
+  display.innerText = response.result
+  })
 }
 
   /*btnOne.onclick = function(event){
