@@ -86,21 +86,45 @@ btnEqual.onclick = function(event){
   method: "GET",
   headers: {
     "Content-Type": "application/json",
+    }
   }
-  }
-  fetch(`http://localhost:3000/getresult/${firstValue}/${secondValue}/${selectedOperator}`, options)
-.then(res => res.json())
-.then((response) => {
-  console.log(response)
-  display.innerText = response.result
+
+
+  switch (selectedOperator) {
+    case "+":
+    fetch(`http://localhost:3000/suma/${firstValue}/${secondValue}`, options)
+    .then(res => res.json())
+    .then((response) => {
+    console.log(response)
+    display.innerText = response.result
   })
+      break;
+    case "-":
+    fetch(`http://localhost:3000/resta/${firstValue}/${secondValue}`, options)
+    .then(res => res.json())
+    .then((response) => {
+    console.log(response)
+    display.innerText = response.result
+  })
+  break;
+    case "*":
+    fetch(`http://localhost:3000/multi/${firstValue}/${secondValue}`, options)
+    .then(res => res.json())
+    .then((response) => {
+    console.log(response)
+    display.innerText = response.result
+  })
+    break;
+    case "/":
+    fetch(`http://localhost:3000/division/${firstValue}/${secondValue}`, options)
+    .then(res => res.json())
+    .then((response) => {
+    console.log(response)
+    display.innerText = response.result
+  })
+    break;
+    default:
+      break;
 }
-
-  /*btnOne.onclick = function(event){
-    display.innerText += parseFloat(event.target.textContent)
-
-  }*/
-  //console.log(event.target.textContent)
-  //console.log(btnOne)
-  //console.dir(display)
+}
 }
